@@ -1,0 +1,147 @@
+{
+  "name": "@microlink/cards-root",
+  "description": "The easiest way to generate dynamic social images at scale.",
+  "homepage": "https://github.com/microlinkhq/cards",
+  "version": "",
+  "author": {
+    "email": "hello@microlink.io",
+    "name": "microlink.io",
+    "url": "https://microlink.io"
+  },
+  "contributors": [
+    {
+      "name": "Kiko Beats",
+      "email": "josefrancisco.verdu@gmail.com"
+    },
+    {
+      "name": "Brad Adams",
+      "email": "hi@breadadams.com"
+    },
+    {
+      "name": "GermanRodrickson",
+      "email": "germanrodrickson@gmail.com"
+    },
+    {
+      "name": "Pedro Duarte",
+      "email": "contact@peduarte.com"
+    },
+    {
+      "name": "midudev",
+      "email": "miduga@gmail.com"
+    },
+    {
+      "name": "Javier Álvarez Medina",
+      "email": "jmedina@tinybird.co"
+    },
+    {
+      "name": "John Letey",
+      "email": "johnletey@gmail.com"
+    },
+    {
+      "name": "Andrew James",
+      "email": "andrew.james@bcgdv.com"
+    },
+    {
+      "name": "Kiko",
+      "email": "travis@travis-ci.org"
+    },
+    {
+      "name": "Rich Haines",
+      "email": "hello@richardhaines.dev"
+    },
+    {
+      "name": "Scott Hutcheson",
+      "email": "scott@smhutch.co.uk"
+    },
+    {
+      "name": "cristianbgp",
+      "email": "cristian.granda.pastor@gmail.com"
+    },
+    {
+      "name": "Miguel Piedrafita",
+      "email": "github@miguelpiedrafita.com"
+    },
+    {
+      "name": "Quique Fdez Guerra",
+      "email": "quique@ckgrafico.com"
+    },
+    {
+      "name": "Lee Robinson",
+      "email": "me@leerob.io"
+    },
+    {
+      "name": "Rubén",
+      "email": "rmoyarodriguez@gmail.com"
+    }
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/microlinkhq/cards.git"
+  },
+  "bugs": {
+    "url": "https://github.com/microlinkhq/cards/issues"
+  },
+  "keywords": [
+    "cards",
+    "img",
+    "meta",
+    "metatags",
+    "microlink",
+    "og-image",
+    "opengraph",
+    "seo",
+    "share"
+  ],
+  "devDependencies": {
+    "@commitlint/cli": "latest",
+    "@commitlint/config-conventional": "latest",
+    "finepack": "latest",
+    "git-authors-cli": "latest",
+    "husky": "latest",
+    "lerna": "latest",
+    "lint-staged": "latest",
+    "npm-check-updates": "latest",
+    "prettier-standard": "latest",
+    "standard": "latest",
+    "standard-markdown": "latest"
+  },
+  "engines": {
+    "node": ">= 12"
+  },
+  "scripts": {
+    "clean": "lerna clean --yes && rm -rf node_modules",
+    "contributors": "(lerna exec finepack --parallel && git-authors-cli && finepack && git add package.json && git commit -m 'build: contributors' --no-verify) || true",
+    "install": "lerna bootstrap --no-ci --force-local",
+    "lint": "standard-markdown README.md && standard",
+    "prerelease": "npm run update:check && npm run contributors",
+    "pretest": "npm run lint",
+    "release": "lerna publish --yes --sort --conventional-commits -m \"chore(release): %s\" --create-release github",
+    "test": "lerna exec npm run test",
+    "update": "lerna exec ncu -- -u",
+    "update:check": "ncu -- --error-level 2"
+  },
+  "private": true,
+  "license": "MIT",
+  "commitlint": {
+    "extends": [
+      "@commitlint/config-conventional"
+    ]
+  },
+  "husky": {
+    "hooks": {
+      "commit-msg": "commitlint -E HUSKY_GIT_PARAMS",
+      "pre-commit": "lint-staged"
+    }
+  },
+  "lint-staged": {
+    "package.json": [
+      "finepack"
+    ],
+    "*.js": [
+      "prettier-standard"
+    ],
+    "*.md": [
+      "standard-markdown"
+    ]
+  }
+}
